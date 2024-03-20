@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Kerboodle</title>
+  <style>
+    body { display: flex; justify-content: center; align-items: center; height: 100vh; font-family: Arial, sans-serif; overflow: hidden; animation: backgroundAnimation 5s infinite; background-color: #f44336; }
+    button { padding: 10px 20px; font-size: 16px; background-color: #4CAF50; color: white; border: none; cursor: pointer; border-radius: 4px; margin: 10px; }
+    button:hover { background-color: #45a049; }
+    #resetButton { position: fixed; bottom: 10px; right: 10px; }
+    @keyframes backgroundAnimation { 0% { background-color: #f44336; } 50% { background-color: #2196f3; } 100% { background-color: #f44336; } }
+  </style>
+  <link rel="icon" href="icon.ico" type="image/x-icon">
+</head>
+<body>
+  <button onclick="openNewWindow()">Come with me and you'll be in a world of pure imagination.</button>
+  <script>
+    var urlObj = new URL(window.location.href), url = "https://www.bing.com", win;
+    function resetElements(container) {
+      container.innerHTML = '';
+      var createButton = (text, action) => {
+        var button = document.createElement('button');
+        button.textContent = text;
+        button.style.cssText = 'background-color: #4CAF50; color: white; border: none; cursor: pointer; border-radius: 4px; padding: 10px 20px; font-size: 16px; margin: 10px;';
+        button.onclick = action;
+        container.appendChild(button);
+      };
+      createButton("Blocked Web", () => {
+        var iframe = document.createElement('iframe');
+        iframe.style.cssText = 'border: none; width: 100%; height: 100%; margin: 0;';
+        iframe.src = url;
+        container.innerHTML = '';
+        container.appendChild(iframe);
+      });
+      createButton("Unblocked Web", () => {
+        var iframe = document.createElement('iframe');
+        iframe.src = './Holy/views/index.html';
+        iframe.style.cssText = 'width: 100%; height: 100%; border: none;';
+        container.innerHTML = '';
+        container.appendChild(iframe);
+      });
+      createButton("Terraria", () => {
+        var iframe = document.createElement('iframe');
+        iframe.src = './Terrari/ondex.html';
+        iframe.style.cssText = 'width: 100%; height: 100%; border: none;';
+        container.innerHTML = '';
+        container.appendChild(iframe);
+      });
+      createButton("ALCHEMY!!!", () => {
+        var iframe = document.createElement('iframe');
+        iframe.src = './my little alchjemy/index.py';
+        iframe.style.cssText = 'width: 100%; height: 100%; border: none;';
+        container.innerHTML = '';
+        container.appendChild(iframe);
+      });
+      createButton("Button 5", () => {});
+    }
+    function openNewWindow() {
+      win = window.open( '','width=800,height=600,toolbar=no,scrollbars=yes,resizable=yes');
+      win.document.title = "Kerboodle";
+      var link = win.document.createElement('link');
+      link.rel = 'icon';
+      link.href = 'icon.ico';
+      win.document.head.appendChild(link);
+      win.document.body.style.cssText = 'margin: 0; height: 100vh; background: #f44336;';
+      var container = win.document.createElement('div');
+      container.style.cssText = 'display: flex; justify-content: center; align-items: center; height: 100%;';
+      win.document.body.appendChild(container);
+      resetElements(container);
+      var resetButton = win.document.createElement('button');
+      resetButton.textContent = "Reset Elements";
+      resetButton.style.cssText = 'background-color: #4CAF50; color: white; border: none; cursor: pointer; border-radius: 4px; padding: 10px 20px; font-size: 16px; margin: 10px; position: absolute; bottom: 10px; right: 10px;';
+      resetButton.onclick = function() { resetElements(container); };
+      win.document.body.appendChild(resetButton);
+    }
+  </script>
+</body>
+</html>
